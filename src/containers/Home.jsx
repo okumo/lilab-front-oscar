@@ -4,10 +4,8 @@ import Products from '../components/Products';
 import AppContext from '../context/AppContext';
 
 import { Helmet } from 'react-helmet';
-
 const Home = () => {
   const context = useContext(AppContext);
-  console.log(context);
   return (
     <>
       <Helmet>

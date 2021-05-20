@@ -1,14 +1,16 @@
 import React from 'react';
-
+import Lechuga from '../images/lechuga.jpg'
 const Product = ({ product, handleToAddCart }) => {
+          const API = `http://localhost:3000/`;
+
   return (
     <>
       <div className="Products-item">
-        <img src={product.image} alt={product.title} />
+        <img src={`${API}/${product.imagen}`} alt={product.descripcion} />
         <div className="Product-item-info">
           <h2>
-            {product.title}
-            <span>{product.price}</span>
+            {product.descripcion} {" - "}
+            <span>{product.price} $</span>
           </h2>
           <p>{product.description}</p>
         </div>
