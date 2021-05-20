@@ -1,11 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import initialState from '../initialState';
 import Products from '../components/Products';
-import AppContext from '../context/AppContext';
 
 import { Helmet } from 'react-helmet';
 const Home = () => {
-  const context = useContext(AppContext);
   return (
     <>
       <Helmet>

@@ -3,6 +3,8 @@ import Product from './Product';
 import '../styles/components/Products.css';
 import AppContext from '../context/AppContext';
 import Axios from 'axios'
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+
 const Products = () => {
   const [data, setData] = useState([])
         const API = `http://localhost:3000/products`;
@@ -14,14 +16,19 @@ const Products = () => {
           }
   }, []);
 
-  const { state, addToCart } = useContext(AppContext);
-  const { products } = state;
+              const [modal, setModal] = useState(false);
+          const toggle = () => setModal(!modal);
 
+  const { state,addToCart } = useContext(AppContext);
   const handleToAddCart = (product) => () => {
-    addToCart(product);
+    let filteredProducts =state.cart.filter(element=>element.id===product.id)
+    if(filteredProducts.length<=product.stock){
+        addToCart(product);
+    }else{
+      setModal(true)
+    }
   };
 
-  console.log(data)
   return (
     <>
       <div className="Products">
@@ -34,6 +41,15 @@ const Products = () => {
             />
           ))}
         </div>
+         <Modal isOpen={modal} toggle={toggle}>
+        <ModalHeader toggle={toggle}>Alerta</ModalHeader>
+        <ModalBody>
+          Se agotó el stock
+        </ModalBody>
+        <ModalFooter>
+          <Button color="primary" onClick={toggle}>Aceptar</Button>
+        </ModalFooter>
+      </Modal>
       </div>
     </>
   );

@@ -1,9 +1,8 @@
-import React from 'react';
-import Lechuga from '../images/lechuga.jpg'
+import React, { useState } from 'react';
 const Product = ({ product, handleToAddCart }) => {
           const API = `http://localhost:3000/`;
 
-  return (
+          return (
     <>
       <div className="Products-item">
         <img src={`${API}/${product.imagen}`} alt={product.descripcion} />
@@ -17,6 +16,7 @@ const Product = ({ product, handleToAddCart }) => {
         <button type="button" onClick={handleToAddCart(product)}>
           Comprar
         </button>
+       
       </div>
     </>
   );
