@@ -28,10 +28,10 @@ const Checkout = () => {
           <h3>Sin pedidos...</h3>
         )}
 
-        {cart.map((item) => (
-          <div className="Checkout-item">
+        {cart.map((item, index) => (
+          <div className="Checkout-item" key={index}>
             <div className="Checkout-element">
-              <h4>{item.title}</h4>
+              <h4>{item.descripcion}</h4>
               <span>${item.price}</span>
             </div>
             <button type="button" onClick={handleRemove(item)}>

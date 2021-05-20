@@ -4,8 +4,11 @@ import { Link, useHistory } from 'react-router-dom';
 import AppContext from '../context/AppContext';
 import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap'
 import initialState from '../initialState'
+import Axios from 'axios'
 
 const Information = ({ history }) => {
+            const API = `http://localhost:3000`;
+
   const historia = useHistory()
     const [modal, setModal] = useState(false);
 
@@ -29,6 +32,7 @@ const Information = ({ history }) => {
   function goToHome(params) {
     setstate(initialState)
     setModal(false)
+    Axios.put(`${API}/updateProducts`,cart).then(response=>console.log(response)).catch(err=>console.log(err))
     historia.push('/')
   }
   return (
@@ -56,10 +60,10 @@ const Information = ({ history }) => {
       </div>
       <div className="Information-sidebar">
         <h3>Pedido:</h3>
-        {cart.map((item) => (
-          <div className="Information-item">
+        {cart.map((item, index) => (
+          <div className="Information-item" key={index}>
             <div className="Information-element">
-              <h4>{item.title}</h4>
+              <h4>{item.descripcion}</h4>
               <span>${item.price}</span>
             </div>
           </div>
